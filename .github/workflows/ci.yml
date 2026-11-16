@@ -1,0 +1,17 @@
+name: CI
+
+# The module's checks (aka-org/gcp-infra's shared workflow): on every pull
+# request, once a week (a new Google provider release can break the module
+# with no change here) and by hand.
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    uses: aka-org/gcp-infra/.github/workflows/terraform-module-ci.yml@main
